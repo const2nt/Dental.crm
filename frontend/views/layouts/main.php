@@ -28,14 +28,15 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Dental.crm',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'РАСПИСАНИЕ', 'url' => ['/timetable/index']],
+        ['label' => 'Журнал пациентов', 'url' => ['/patient/index']],
+        ['label' => 'Журнал приемов', 'url' => ['/timetable/index']],
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],

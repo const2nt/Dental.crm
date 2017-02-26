@@ -25,14 +25,26 @@ class Patients extends \yii\db\ActiveRecord
         return 'patients';
     }
 
+    public function beforeSave($insert)
+    {
+        $this->registration_date = strtotime($this->registration_date);
+
+
+        return parent::beforeSave($insert);
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['patient_card', 'registration_date', 'gender'], 'integer'],
-            [['firstname', 'lastname', 'middlename'], 'string', 'max' => 50],
+            [['firstname', 'lastname', 'middlename','patient_card', 'gender', 'registration_date', 'phone'], 'required'],
+            [['patient_card', 'gender'], 'integer'],
+            [['registration_date'], 'date', 'format' => 'dd-mm-yyyy' ],
+            [['address', 'place_work', 'notes'], 'string'],
+            [['firstname', 'lastname', 'middlename','country', 'region', 'city'], 'string', 'max' => 50],
+            [['phone'], 'string', 'max' => 25],
         ];
     }
 
@@ -43,12 +55,19 @@ class Patients extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
-            'middlename' => 'Middlename',
-            'patient_card' => 'Patient Card',
-            'registration_date' => 'Registration Date',
-            'gender' => 'Gender',
+            'firstname' => Yii::t('app', 'Имя'),
+            'lastname' => Yii::t('app', 'Фамилия'),
+            'middlename' => Yii::t('app', 'Отчество'),
+            'patient_card' => Yii::t('app', 'Номер карточки'),
+            'registration_date' => Yii::t('app', 'Дата регистрации'),
+            'gender' => Yii::t('app', 'Пол'),
+            'phone' => Yii::t('app', 'Телефон'),
+            'country' => Yii::t('app', 'Страна'),
+            'region' => Yii::t('app', 'Область'),
+            'city' => Yii::t('app', 'Город'),
+            'address' => Yii::t('app', 'Адрес'),
+            'place_work' => Yii::t('app', 'Место работы'),
+            'notes' => Yii::t('app', 'Заметки'),
         ];
     }
 }

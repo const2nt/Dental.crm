@@ -41,7 +41,8 @@ class TimetableController extends Controller
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'dates' => $this->getArray($this->getRange())
+            'dates' => $this->getArray($this->getRange()),
+            'date' =>$this->getRange()
         ]);
     }
 
@@ -49,15 +50,26 @@ class TimetableController extends Controller
     {
 
         return $this->render('search',[
-            'dates' => $this->getArray($this->actionPost())
+            'dates' => $this->getArrayDates(Yii::$app->request->post('from_date'), Yii::$app->request->post('to_date'))
         ]);
     }
 
-    public function actionPost()
+    public function getArrayDates($starts,$finishes)
     {
-        $array[] = strtotime(Yii::$app->request->post('search'));
+        $start = strtotime($starts);
+        $finish = strtotime($finishes);
 
-        return $array;
+        if (!empty($starts) && !empty($finishes)) {
+            $arrayOfDates = array();
+            $i = $start;
+            do {
+                $arrayOfDates[] = $i;
+                $i += 86400;
+            } while ($i <= $finish);
+
+
+            return $this->getArray($arrayOfDates);
+        }
     }
 
 
@@ -67,7 +79,9 @@ class TimetableController extends Controller
      */
     public function getRange()
     {
-        $amount = 14;
+        $amount = 13;
+        $arr[] = strtotime(date('d-m-Y', time()));
+
         for($i=1;$i<=$amount;$i++){
            $arr[] = strtotime(date('d-m-Y', time()+$i*24*60*60));
         }

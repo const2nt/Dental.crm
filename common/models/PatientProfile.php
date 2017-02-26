@@ -26,6 +26,8 @@ class PatientProfile extends \yii\db\ActiveRecord
         return 'patient_profile';
     }
 
+
+
     /**
      * @inheritdoc
      */
@@ -45,13 +47,13 @@ class PatientProfile extends \yii\db\ActiveRecord
     {
         return [
             'patient_id' => 'Patient ID',
-            'phone' => 'Phone',
-            'country' => 'Country',
-            'region' => 'Region',
-            'city' => 'City',
-            'address' => 'Address',
-            'place_work' => 'Place Work',
-            'notes' => 'Notes',
+            'phone' => Yii::t('app', 'Телефон'),
+            'country' => Yii::t('app', 'Страна'),
+            'region' => Yii::t('app', 'Область'),
+            'city' => Yii::t('app', 'Город'),
+            'address' => Yii::t('app', 'Адрес'),
+            'place_work' => Yii::t('app', 'Место работы'),
+            'notes' => Yii::t('app', 'Заметки'),
         ];
     }
 }
