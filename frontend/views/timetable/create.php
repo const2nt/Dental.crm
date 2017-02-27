@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 
 
 /* @var $this yii\web\View */
@@ -13,8 +14,26 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="timetable-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php
+    if (!empty($_POST)) :
+        print_r($_POST['patient_id']);
+        echo "<br>";
+        print_r($_POST['phone']);
+    ?>
 
-    <?= $this->render('_form', [
+    <?= DetailView::widget([
+        'model' => $_POST,
+        'attributes' => [
+            'patient_id'=>[                      // the owner name of the model
+                'label' => "FIO" ,
+                'value' => $_POST['patient_id'],
+        ],
+            'phone',
+
+        ],
+    ]) ?>
+    <?php endif; ?>
+    <?= $this->render('_formCreate', [
         'model' => $model,
     ]) ?>
 

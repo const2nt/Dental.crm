@@ -9,28 +9,41 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Журнал пациентов');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="patients-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
 
     <p>
         <?= Html::a(Yii::t('app', 'Создать пациента'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-//            'id',
-            'lastname',
-            'firstname',
-            'middlename',
-            'patient_card',
-            // 'registration_date',
-             'gender',
-            'phone',
+    <?= $this->render('_search',[
+            'model'=>$model,
+            'data'=>$data,
+            'search'=>$search
+    ])?>
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+
+    <?php
+//    GridView::widget([
+//        'dataProvider' => $dataProvider,
+//        'columns' => [
+//            ['class' => 'yii\grid\SerialColumn'],
+//
+////            'id',
+//            'lastname',
+//            'firstname',
+//            'middlename',
+//            'patient_card',
+//            // 'registration_date',
+//            'gender',
+//            'phone',
+//
+//            ['class' => 'yii\grid\ActionColumn'],
+//        ],
+//    ]);
+    ?>
+
+
 </div>

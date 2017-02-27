@@ -2,6 +2,9 @@
 
 namespace frontend\controllers;
 
+use common\models\Patients;
+use common\models\PatientsSearch;
+use frontend\models\SearchForm;
 use Yii;
 use common\models\Timetable;
 use common\models\TimetableSearch;
@@ -42,10 +45,14 @@ class TimetableController extends Controller
 
         return $this->render('index', [
             'dates' => $this->getArray($this->getRange()),
-            'date' =>$this->getRange()
+
         ]);
     }
 
+/**
+ * @return string
+ * to search in reception journal
+ */
     public function actionSearch()
     {
 

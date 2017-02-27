@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\TimetableSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -13,7 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="timetable-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-<!--<?php // echo $this->render('_search', ['model' => $searchModel]); ?>-->
+<?php // echo $this->render('_search', ['model' => $searchModel]);?>
+
 
     <p>
         <?= Html::a('Записать на прием', ['create'], ['class' => 'btn btn-success']) ?>
@@ -45,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('_timetable', [
     'dates' => $dates,
 ])?>
+
 
 
 

@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'autoclose'=>true,
             'format' => 'dd-mm-yyyy',
             'language' => 'ru'
-
         ]
     ]);
     ?>

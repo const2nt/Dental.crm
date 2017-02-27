@@ -21,13 +21,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'start_time') ?>
 
-    <?= $form->field($model, 'end_time') ?>
+<!--    <?//= $form->field($model, 'end_time') ?>-->
 
     <?= $form->field($model, 'patient_id') ?>
 
     <?= $form->field($model, 'full_name') ?>
 
-    <?= $form->field($model, 'doctor_id') ?>
+<!--    <?//= $form->field($model, 'doctor_id') ?>-->
 
     <?php // echo $form->field($model, 'manager_id') ?>
 

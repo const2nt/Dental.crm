@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\PatientProfile;
+use frontend\models\SearchForm;
 use Yii;
 use common\models\Patients;
 use yii\data\ActiveDataProvider;
@@ -36,13 +37,50 @@ class PatientController extends Controller
      */
     public function actionIndex()
     {
+        $model = new SearchForm();
+
         $dataProvider = new ActiveDataProvider([
             'query' => Patients::find(),
+
         ]);
+
+
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'model'=> $model,
+            'data'=>$this->getPatientsArray(),
+            'search'=> $this->Search()
         ]);
+    }
+
+    public function Search()
+    {
+        if(!empty($_POST['SearchForm']['search'])) {
+
+            $getSearch = explode("|", $_POST['SearchForm']['search']);
+            $quer = $getSearch[2];
+            $query = explode(" ",$quer);
+            $search = [];
+            $search = Patients::find()
+//                ->where('`firstname` LIKE "%'.$query[1].'%" OR `lastname` LIKE "%'.$query[0].'%" OR `middlename` LIKE "%'.$query[2].'%"')
+                ->where('`patient_card` LIKE "%'.$query[3].'%"')
+                ->all();
+
+            return $search;
+        }
+    }
+
+    protected function getPatientsArray()
+    {
+
+        $data = Patients::find()->all();
+
+        foreach ($data as $d ) {
+            $data_array[] = $d->lastname." ".$d->firstname." ".$d->middlename." | тел. ".$d->phone." | № карты ".$d->patient_card;
+        }
+
+        return array_values($data_array);
     }
 
     /**
