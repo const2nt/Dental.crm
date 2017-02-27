@@ -45,7 +45,7 @@ class Timetable extends \yii\db\ActiveRecord
             [['date'], 'string', 'max'=>11],
             [['start_time','end_time' ], 'string', 'max'=>5 ],
             [['patient_id', 'doctor_id', 'manager_id', 'primary'], 'integer'],
-            [['date','start_time','end_time','patient_id', 'doctor_id', 'manager_id', 'primary', 'full_name'], 'required'],
+            [['date','start_time','end_time', 'doctor_id', 'manager_id'], 'required'],
             [['notes'], 'string'],
             [['full_name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 25],
@@ -62,13 +62,13 @@ class Timetable extends \yii\db\ActiveRecord
             'date' => Yii::t('app', 'Дата'),
             'start_time' => Yii::t('app', 'Начало приема'),
             'end_time' => Yii::t('app', 'Конец приема'),
-            'patient_id' => Yii::t('app', 'Выберите пациента с базы (пропустить если пациент первичный)'),
-            'full_name' => Yii::t('app', 'ФИО - если пациент "первичный"'),
+            'patient_id' => Yii::t('app', ''),
+            'full_name' => Yii::t('app', 'ФИО'),
             'doctor_id' => Yii::t('app', 'Выберите доктора'),
-            'manager_id' => Yii::t('app', 'Manager ID'),
+            'manager_id' => Yii::t('app', 'Менеджер'),
             'notes' => Yii::t('app', 'Заметки'),
             'phone' => Yii::t('app', 'Телефоный номер '),
-            'primary' => Yii::t('app', 'Primary'),
+            'primary' => Yii::t('app', 'Первичный'),
         ];
     }
 }

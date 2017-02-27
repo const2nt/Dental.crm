@@ -178,13 +178,24 @@ class TimetableController extends Controller
     public function actionCreate()
     {
         $model = new Timetable();
+        $modelSearch = new SearchForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            return $this->render('create',
+                isset($_POST['patient_id']) ?
+                    [
+                        'model' => $model,
+
+                        'patient' => $this->findModelPatient($_POST['patient_id'])
+                    ] :
+                    [
+                        'modelSearch'=> $modelSearch,
+                        'model' => $model,
+                        'data' => '',
+                    ]
+            );
         }
     }
 
@@ -230,6 +241,15 @@ class TimetableController extends Controller
     protected function findModel($id)
     {
         if (($model = Timetable::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findModelPatient($id)
+    {
+        if (($model = Patients::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

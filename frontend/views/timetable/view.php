@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'manager_id',
             'notes:ntext',
             'phone',
-            //'primary',
+//            'primary',
         ],
     ]) ?>
 
