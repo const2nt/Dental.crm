@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Patients */
 
-$this->title = Yii::t('app', 'Создать пациента');
+$this->title = Yii::t('app', 'Создать карточку');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Журнал пациентов'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

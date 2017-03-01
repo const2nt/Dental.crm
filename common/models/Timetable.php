@@ -62,7 +62,7 @@ class Timetable extends \yii\db\ActiveRecord
             'date' => Yii::t('app', 'Дата'),
             'start_time' => Yii::t('app', 'Начало приема'),
             'end_time' => Yii::t('app', 'Конец приема'),
-            'patient_id' => Yii::t('app', ''),
+            'patient_id' => Yii::t('app', 'ID пациента'),
             'full_name' => Yii::t('app', 'ФИО'),
             'doctor_id' => Yii::t('app', 'Выберите доктора'),
             'manager_id' => Yii::t('app', 'Менеджер'),
