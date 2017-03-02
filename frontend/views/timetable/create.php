@@ -36,7 +36,7 @@ if(isset($_POST['create']) == 'create'){
 ?>
 <div class="timetable-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <?= $this->render('_formCreate', [
         'model' => $model,
@@ -44,3 +44,5 @@ if(isset($_POST['create']) == 'create'){
 
 </div>
 <?php }?>
+
+

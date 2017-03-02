@@ -39,7 +39,7 @@ class Patients extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['firstname', 'lastname', 'middlename','patient_card', 'gender', 'registration_date', 'phone'], 'required'],
+            [['firstname', 'lastname', 'middlename',/**'patient_card', 'gender',**/ 'registration_date', 'phone'], 'required'],
             [['patient_card', 'gender'], 'integer'],
             [['registration_date'], 'date', 'format' => 'dd-mm-yyyy' ],
             [['address', 'place_work', 'notes'], 'string'],

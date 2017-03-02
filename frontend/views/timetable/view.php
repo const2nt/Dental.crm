@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'date' =>[
                 'label'=>Yii::t('app','Дата приема'),
-                'value'=>date('d-m-Y',$model->date)
+                'value'=>date('d-M-Y',$model->date)
             ],
             'start_time'=>[
                 'label'=>Yii::t('app','Начало приема'),

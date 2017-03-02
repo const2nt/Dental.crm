@@ -92,7 +92,7 @@ class TimetableController extends Controller
                 $doctors[] = [
                     'date' => $date,
                     'doctor_id' => $this->getDoctorsId($date),
-                    'doctors_profile'=>$this->getDoctorsProfile($this->getDoctorsId($date)),
+                    'doctors_profile'=>$this->getDoctorsProfileId($this->getDoctorsId($date)),
                     'patients' => $this->getAllPatientsArray($date),
                     'patients_profile' =>$this->getPatientsId($date)
                 ];
@@ -142,6 +142,14 @@ class TimetableController extends Controller
         $dates = array_unique($array);
         return $dates;
     }
+
+    protected function getDoctorsPosition()
+    {
+        $doctors = UserProfile::find()->where(['position'=>'3'])->all();
+        $doctors_array = ArrayHelper::map($doctors,'user_id','lastname');
+
+        return $doctors_array;
+    }
     /**
      * Displays a single Timetable model.
      * @param integer $id
@@ -169,6 +177,7 @@ class TimetableController extends Controller
     {
         $model = new Timetable();
         $modelSearch = new SearchForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -194,14 +203,22 @@ class TimetableController extends Controller
      */
     public function actionUpdate($id)
     {
+
         $model = $this->findModel($id);
+        $profile = $this->findModelPatient($model->patient_id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'profile' => $profile,
+                'doctors' => $this->getDoctorsPosition()
             ]);
         }
+    }
+    public function actionFormCreate()
+    {
+        return $this->render('formCreate', ['doctors' => $this->getDoctorsPosition()]);
     }
     /**
      * Deletes an existing Timetable model.
@@ -275,7 +292,7 @@ class TimetableController extends Controller
         }
     }
 
-    private function getDoctorsProfile($doctors_id)
+    private function getDoctorsProfileId($doctors_id)
     {
         foreach ($doctors_id as $doctor_id)
         {

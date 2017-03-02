@@ -12,10 +12,11 @@ $this->params['breadcrumbs'][] = 'Редактировать запись';
 ?>
 <div class="timetable-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= $profile->lastname." ".$profile->firstname." ".$profile->middlename ?></h2>
 
     <?= $this->render('_form', [
         'model' => $model,
+        'doctors'=>$doctors
     ]) ?>
 
 </div>

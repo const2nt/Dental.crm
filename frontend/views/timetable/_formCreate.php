@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kostya
- * Date: 26.02.2017
- * Time: 17:11
- */
+
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -13,12 +8,8 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Timetable */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<?php
-//if(!empty(print_r($_POST))) {
-//    $id = $_POST['patient_id'];
-//}
+<h2><?= isset($_POST['name']) ? "Записать на прием: ".$_POST['name'] : Html::encode($this->title) ?></h2>
 
-?>
 <div class="timetable-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -34,13 +25,11 @@ use yii\widgets\ActiveForm;
              ['maxlength' => true, 'value'=>$_POST['name']] :
             ['maxlength' => true] ) ?>
 
-    <?=$form->field($model, 'primary')
-        ->checkbox(isset($_POST['patient_id']) ?
-        ['disabled'=>true] :
-            [''])
-    ?>
+    <?= isset($_POST['patient_id']) ? "" : $form->field($model, 'primary')->checkbox() ?>
 
     <?= $form->field($model, 'doctor_id')->textInput() ?>
+
+<!--    <?//= $form->field($model, 'doctor_id')->dropDownList($doctors) ?>-->
 
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>
 
@@ -54,15 +43,13 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton($model->isNewRecord ? 'Сохранить запись' : 'Сохранить изминения', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-    <?= $form->field($model, 'patient_id')
+    <?= $form->field($model, 'patient_id')->label(false)
         ->hiddenInput(isset($_POST['patient_id']) ?
         ['value'=> $_POST['patient_id']] :
             ['value' =>''])
     ?>
 
-    <?= $form->field($model, 'manager_id')->hiddenInput(['value' => Yii::$app->user->id]) ?>
-
-
+    <?= $form->field($model, 'manager_id')->label(false)->hiddenInput(['value' => Yii::$app->user->id]) ?>
 
     <?php ActiveForm::end(); ?>
 

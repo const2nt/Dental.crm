@@ -34,11 +34,11 @@ foreach ($dates as $date){
                             </summary>
                             <table>
                                 <tr>
-                                    <td>Время приема</td>
-                                    <td>Пациент</td>
-                                    <td>Телефон</td>
-                                    <td>№ Карты</td>
-                                    <td>Заметки</td>
+                                    <td><b>Время приема</b></td>
+                                    <td><b>Пациент</b></td>
+                                    <td><b>Телефон</b></td>
+                                    <td><b>№ Карты</b></td>
+                                    <td><b>Заметки</b></td>
                                     <td></td>
                                 </tr>
 
@@ -67,7 +67,12 @@ foreach ($dates as $date){
                                                 {
                                                     if ($profile['id'] == $patient['patient_id'])
                                                     {
-                                                    echo $profile['patient_card'];
+
+                                                        if($profile['patient_card']){
+                                                            echo $profile['patient_card'];
+                                                        }else{
+                                                            echo "<b>первичный</b>";
+                                                        }
                                                 }
                                                 }
                                                 ?>
