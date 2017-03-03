@@ -19,12 +19,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <p>
     <?php
     echo DatePicker::widget([
-        'language' => 'ru',
         'name' => 'from_date',
         'value' => date('d-m-Y', time()),
         'type' => DatePicker::TYPE_RANGE,
         'name2' => 'to_date',
         'value2' => date('d-m-Y', time()),
+        'language' => 'ru',
         'pluginOptions' => [
             'autoclose'=>true,
             'format' => 'dd-mm-yyyy',
@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]);
     ?>
+
 </p>
 
 <p>

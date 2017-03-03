@@ -18,9 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'middlename')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'patient_card')->textInput() ?>
-
-    <?= $form->field($model, 'registration_date')->textInput(['value'=> date('d-m-Y',time())]) ?>
+    <?= $form->field($model, 'registration_date')->hiddenInput(['value'=> date('d-m-Y',time())])->label(false) ?>
 
     <?= $form->field($model, 'gender')->dropDownList(Yii::$app->params['gender']) ?>
 
@@ -39,7 +37,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'notes')->textarea() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Создать') : Yii::t('app', 'Редактировать'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

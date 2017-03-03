@@ -8,12 +8,13 @@ use kartik\widgets\Typeahead;
 /* @var $model common\models\PatientsSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<h2 class="searchLabel"><?=Yii::t('app', 'Найти пациента')?></h2>
 
-<h3><?=Yii::t('app', 'Найти пациента')?></h3>
-<p>
-   <?php
+<div class="panel-body">
+   <div class="searchInput pull-left"><?php
         $form = ActiveForm::begin();
-        echo $form->field($model, 'search')->widget(Typeahead::classname(), [
+        echo $form->field($model, 'search')->label(false)
+            ->widget(Typeahead::classname(), [
             'options' => ['placeholder' => 'Введите ФИО, номер телефона или номер карточки'],
             'pluginOptions' => ['highlight'=>true],
             'dataset' => [
@@ -23,26 +24,27 @@ use kartik\widgets\Typeahead;
                 ]
             ]
         ]);
-
         ?>
+   </div>
+<div class="pull-right">
     <?php
    echo Html::submitButton(
-       Yii::t('app', 'Найти пациента'),
-       ['class'=>'btn btn-success btn-md']
+       Yii::t('app', 'Найти'),
+       ['class'=>'btn btn-primary btn-md']
    );
         ActiveForm::end();
     ?>
-
-</p>
+</div>
+</div>
 
 
 <?php
 if(count($search)>0){
-    echo "<h4>Результаты поиска:</h4>";
+    echo "<h4 id='searchresult'>Результаты поиска:</h4>";
     foreach ($search as $item) {
         ?>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="panel-result">
             <div class="panel-body">
 
                 <?= Html::a('<b>'.$item->lastname .

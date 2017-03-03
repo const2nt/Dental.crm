@@ -40,6 +40,7 @@ if(isset($_POST['create']) == 'create'){
 
     <?= $this->render('_formCreate', [
         'model' => $model,
+        'doctors'=> $doctors
     ]) ?>
 
 </div>

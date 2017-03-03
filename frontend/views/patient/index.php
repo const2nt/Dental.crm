@@ -2,6 +2,8 @@
 
 use yii\grid\GridView;
 use yii\helpers\Html;
+use kartik\form\ActiveForm;
+use kartik\widgets\Typeahead;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -17,7 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'btn btn-success']) ?>
         </p>
         </div>
-        <div class="row" id="searchPatient">
+    </div>
+
+        <div  class="panel-body">
             <?= $this->render('_search',[
                 'model'=>$model,
                 'data'=>$data,
@@ -25,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ])?>
 
         </div>
-    </div>
+
+
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,

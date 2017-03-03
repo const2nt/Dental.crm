@@ -13,11 +13,20 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($model, 'date')
-->textInput([
-'maxlength' => true,
- 'value'=>date('d-m-Y', $model->date)])
- ?>
+    <?php
+    echo '<label style="margin-left: 50px;" class="control-label">Дата приема</label>';
+    echo DatePicker::widget([
+        'model'=> $model,
+        'attribute'=>'date',
+        'options' => ['placeholder' => 'Выбирите дату ...','value'=>date('d-M-Y',$model->date),],
+        'pluginOptions' => [
+            'todayHighlight' => true,
+            'todayBtn' => true,
+            'format' => 'dd-M-yyyy',
+            'autoclose' => true,
+        ]
+    ]);
+    ?>
 
 <!--    <?php
 //    echo DatePicker::widget([

@@ -185,12 +185,13 @@ class TimetableController extends Controller
                 isset($_POST['patient_id']) ?
                     [
                         'model' => $model,
-                        'patient' => $this->findModelPatient($_POST['patient_id'])
+                        'patient' => $this->findModelPatient($_POST['patient_id']),
+                        'doctors' => $this->getDoctorsPosition()
                     ] :
                     [
                         'modelSearch'=> $modelSearch,
                         'model' => $model,
-                        'data' => '',
+                        'doctors' => $this->getDoctorsPosition()
                     ]
             );
         }
@@ -216,10 +217,10 @@ class TimetableController extends Controller
             ]);
         }
     }
-    public function actionFormCreate()
-    {
-        return $this->render('formCreate', ['doctors' => $this->getDoctorsPosition()]);
-    }
+//    public function actionFormCreate()
+//    {
+//        return $this->render('formCreate', ['doctors' => $this->getDoctorsPosition()]);
+//    }
     /**
      * Deletes an existing Timetable model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

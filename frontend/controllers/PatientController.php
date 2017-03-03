@@ -41,16 +41,14 @@ class PatientController extends Controller
 
         $dataProvider = new ActiveDataProvider([
             'query' => Patients::find(),
-
         ]);
-
-
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'model'=> $model,
             'data'=>$this->getPatientsArray(),
-            'search'=> $this->Search()
+            'search'=> $this->Search(),
+            'lastpatient'=>$this->getLastPatientCardNumber()
         ]);
     }
 
@@ -59,12 +57,17 @@ class PatientController extends Controller
         if(!empty($_POST['SearchForm']['search'])) {
 
             $getSearch = explode("|", $_POST['SearchForm']['search']);
-            $quer = $getSearch[2];
-            $query = explode(" ",$quer);
-            $search = [];
+            $query_card = $getSearch[2];
+            $card_number = explode(" ",$query_card);
+            $name = explode(" ",$getSearch[0]);
+            $query = "`lastname`"." LIKE "."\"%".$name[0]."%\"";
+            if(is_integer($card_number[3])) {          // TODO: удалить после создания автозаполнения "№ карточки"
+                $query .= " OR ";
+                $query .= "`patient_card`" . " LIKE " . "\"%" . $card_number[3] . "%\"";
+            }
+
             $search = Patients::find()
-//                ->where('`firstname` LIKE "%'.$query[1].'%" OR `lastname` LIKE "%'.$query[0].'%" OR `middlename` LIKE "%'.$query[2].'%"')
-                ->where('`patient_card` LIKE "%'.$query[3].'%"')
+                ->where($query)
                 ->all();
 
             return $search;
@@ -83,6 +86,13 @@ class PatientController extends Controller
         return array_values($data_array);
     }
 
+    public static function getLastPatientCardNumber()
+    {
+        $last_row = Patients::find()->orderBy(['id'=> SORT_DESC])->limit(1)->one();
+        $number = $last_row->patient_card;
+        return $number;
+    }
+
     /**
      * Displays a single Patients model.
      * @param integer $id
@@ -90,8 +100,10 @@ class PatientController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model
         ]);
     }
 

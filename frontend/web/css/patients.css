@@ -1,6 +1,32 @@
-div #searchPatient{
-    border: 1px solid powderblue;
+.panel-body{
+    /*border: 1px solid grey;*/
     border-radius: 10px;
-    width: 700px ;
-    background-color:powderblue;
+    width: 800px;
+    margin-left: 0;
+    padding-left: 5px;
+    /*background-color:powderblue;*/
+    /*width: 700px;*/
+
+}
+.searchLabel{
+    padding: 0 0 0 45px;
+}
+.searchInput{
+    width: 700px;
+    padding-left: 0px;
+    position: absolute;
+    left: 0;
+}
+.searhbutton{
+    position: absolute;
+    left: 700px;
+}
+#searchresult{
+    padding-top: 15px;
+    padding-left: 45px;
+}
+#panel-result{
+    width: 900px;
+    padding-left: 45px;
+    margin-right: 45px;
 }
