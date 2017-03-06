@@ -86,11 +86,27 @@ class PatientController extends Controller
         return array_values($data_array);
     }
 
-    public static function getLastPatientCardNumber()
+    public function getLastPatientCardNumber()
     {
         $last_row = Patients::find()->orderBy(['id'=> SORT_DESC])->limit(1)->one();
         $number = $last_row->patient_card;
         return $number;
+    }
+
+    static public function createPatientIfPrimary($full_name,$phone)
+    {
+        $name = explode(" ",$full_name);
+
+        $model = new Patients();
+        $model->lastname = $name[0];
+        $model->firstname = $name[1];
+        $model->middlename = $name[2];
+        $model->registration_date = date('d-m-Y',time());
+        $model->phone = $phone;
+        $model->patient_card = PatientController::getLastPatientCardNumber() + 1;
+        $model->save();
+
+        return $model->id;
     }
 
     /**

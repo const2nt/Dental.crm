@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //        ],
 //    ]); ?> - Default table -->
 </div>
+
 <?= $this->render('_timetable', [
     'dates' => $dates,
 ])?>

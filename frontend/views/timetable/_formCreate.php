@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'full_name')
         ->textInput(isset($_POST['name']) ?
-             ['maxlength' => true, 'value'=>$_POST['name']] :
+            ['maxlength' => true, 'value'=>$_POST['name']] :
             ['maxlength' => true] ) ?>
 
     <?= isset($_POST['patient_id']) ? "" : $form->field($model, 'primary')->checkbox() ?>

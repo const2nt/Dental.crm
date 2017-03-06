@@ -23,6 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a(Yii::t('app', 'Карточка'), ['patient/view', 'id' => $model->patient_id], ['class' => 'btn btn-info']) ?>
+
     </p>
     <?php
 //    echo "<pre>";

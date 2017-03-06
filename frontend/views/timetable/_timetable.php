@@ -9,7 +9,7 @@ foreach ($dates as $date){
     ?>
 
     <details>
-        <summary>Дата <b><?=date('d-m-Y', $date['date'])?></b></summary>
+        <summary>Дата <b><?=date('d-m-Y---D', $date['date'])?></b></summary>
         <div>
 
             <?php

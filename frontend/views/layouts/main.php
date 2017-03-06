@@ -35,6 +35,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
+        ['label' => 'Посещение', 'url' => ['/patients-treatments/index']],
         ['label' => 'Журнал пациентов', 'url' => ['/patient/index']],
         ['label' => 'Журнал приемов', 'url' => ['/timetable/index']],
         ['label' => 'Home', 'url' => ['/site/index']],

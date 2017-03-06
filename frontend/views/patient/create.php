@@ -10,7 +10,6 @@ $this->title = Yii::t('app', 'Создать карточку');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Журнал пациентов'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="patients-create">
 
     <h1><?= Html::encode($this->title) ?></h1>

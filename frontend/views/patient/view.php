@@ -15,14 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2><?= Html::encode($this->title) ?></h2>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Редактировать карточку'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Удалить карточку'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
         <?= Html::a(Yii::t('app', 'Записать на прием'),
             ['timetable/create'],
             [
@@ -40,31 +32,59 @@ $this->params['breadcrumbs'][] = $this->title;
         );
         ?>
     </p>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab">Основное</a></li>
+        <li role="presentation"><a href="#requests" aria-controls="profile" role="tab" data-toggle="tab">Requests</a></li>
+        <li role="presentation"><a href="#bl" aria-controls="messages" role="tab" data-toggle="tab">Ass holes</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="main">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>
+                    <?= Html::a(Yii::t('app', 'Редактировать карточку'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a(Yii::t('app', 'Удалить карточку'), ['delete', 'id' => $model->id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+                    </p>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'lastname',
+                    'firstname',
+                    'middlename',
+                    'patient_card',
+                    'registration_date'=>[
+                        'label' => 'Дата регистрации',
+                        'value' => date('d-M-Y',$model->registration_date)
+                    ],
+                    'gender'=>[
+                        'label' => 'Пол',
+                        'value' => ($model->gender == 0) ? "женский" : "мужской"
+                    ],
+                    'phone',
+                    'country',
+                    'region',
+                    'city',
+                    'address',
+                    'place_work',
+                    'notes',
+                ],
+            ]) ?>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="requests">
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="requests">
+        </div>
+    </div>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-//            'id',
-            'lastname',
-            'firstname',
-            'middlename',
-            'patient_card',
-            'registration_date'=>[
-                    'label' => 'Дата регистрации',
-                    'value' => date('d-M-Y',$model->registration_date)
-            ],
-            'gender'=>[
-                    'label' => 'Пол',
-                    'value' => ($model->gender == 0) ? "женский" : "мужской"
-            ],
-            'phone',
-            'country',
-            'region',
-            'city',
-            'address',
-            'place_work',
-            'notes',
-        ],
-    ]) ?>
+
 
 </div>

@@ -53,6 +53,13 @@ class TimetableController extends Controller
             'dates' => $this->getArrayDates(Yii::$app->request->post('from_date'), Yii::$app->request->post('to_date'))
         ]);
     }
+
+    /**
+     * @param $starts
+     * @param $finishes
+     * @return array
+     * get array dates for Search
+     */
     public function getArrayDates($starts,$finishes)
     {
         $start = strtotime($starts);
@@ -67,6 +74,7 @@ class TimetableController extends Controller
             return $this->getArray($arrayOfDates);
         }
     }
+
     /**
      * @return array
      * get array on range dates
@@ -80,6 +88,12 @@ class TimetableController extends Controller
         }
         return $arr;
     }
+
+    /**
+     * @param $array
+     * @return array
+     * get array data for index
+     */
     protected function getArray($array)
     {
         foreach ($array as $date){
@@ -100,6 +114,12 @@ class TimetableController extends Controller
         }
         return $doctors;
     }
+
+    /**
+     * @param $setdate
+     * @return mixed
+     * get array all patients for one date
+     */
     protected function getAllPatientsArray($setdate)
     {
         $array[] = Timetable::find()
@@ -122,6 +142,11 @@ class TimetableController extends Controller
         return $doctors[0];
     }
 
+    /**
+     * @param $setdate
+     * @return array
+     * get array ID for all patients
+     */
     protected function getPatientsId($setdate)
     {
         foreach ($this->getAllPatientsArray($setdate) as $card){
@@ -134,6 +159,11 @@ class TimetableController extends Controller
         return $patients;
     }
 
+    /**
+     * @param $setdate
+     * @return array
+     * get in patients all unique dates
+     */
     protected  function getDates($setdate)
     {
         foreach($this->getAllPatientsArray($setdate) as $card){
@@ -143,6 +173,10 @@ class TimetableController extends Controller
         return $dates;
     }
 
+    /**
+     * @return array
+     * get array Doctors Position
+     */
     protected function getDoctorsPosition()
     {
         $doctors = UserProfile::find()->where(['position'=>'3'])->all();
@@ -217,10 +251,7 @@ class TimetableController extends Controller
             ]);
         }
     }
-//    public function actionFormCreate()
-//    {
-//        return $this->render('formCreate', ['doctors' => $this->getDoctorsPosition()]);
-//    }
+
     /**
      * Deletes an existing Timetable model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -247,6 +278,7 @@ class TimetableController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
     protected function findModelPatient($id)
     {
         if (($model = Patients::findOne($id)) !== null) {
@@ -301,6 +333,5 @@ class TimetableController extends Controller
 
         }
         return $doctors;
-
     }
 }
