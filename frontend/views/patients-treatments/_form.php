@@ -8,24 +8,12 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\PatientsDiagnoses */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<?php
-//echo "<pre>";
-//print_r($services);
-//print_r($patients);
-//echo "</pre>";
-?>
+
 <div class="patients-diagnoses-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php
-    echo $form->field($diagnoses, 'patient_id')->label('Пациент')->widget(Select2::classname(), [
-    'data' => $patients,
-    'options' => ['placeholder' => 'Выберите пациента ...'],
-    'pluginOptions' => [
-    'allowClear' => true
-    ],
-    ]); ?>
+    <?= $form->field($diagnoses, 'patient_id')->hiddenInput(['value' => $_POST['patient_id']])->label(false)?>
 
     <h3>Диагноз</h3>
 
@@ -39,19 +27,11 @@ use yii\widgets\ActiveForm;
 
     <h3>Лечение</h3>
 
-    <?php
-    echo $form->field($treatments, 'patient_id')->label('Пациент')->widget(Select2::classname(), [
-        'data' => $patients,
-        'options' => ['placeholder' => 'Выберите пациента ...'],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+    <?= $form->field($treatments, 'patient_id')->hiddenInput(['value' => $_POST['patient_id']])->label(false)?>
 
     <?= $form->field($treatments, 'date')->hiddenInput(['value' => strtotime(date('d-m-Y',time()))])->label(false) ?>
 
-    <?= $form->field($treatments, 'tooth_id')->textInput() ?>
-
+    <?= $form->field($treatments, 'tooth_id')->textInput()->label('Номер лечебного зуба') ?>
 <?php
     echo '<label class="control-label">Применино в личении</label>';
     echo Select2::widget([

@@ -35,8 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab">Основное</a></li>
-        <li role="presentation"><a href="#requests" aria-controls="profile" role="tab" data-toggle="tab">Requests</a></li>
-        <li role="presentation"><a href="#bl" aria-controls="messages" role="tab" data-toggle="tab">Ass holes</a></li>
+        <li role="presentation"><a href="#med-history" aria-controls="med" role="tab" data-toggle="tab">Мед.История</a></li>
+        <li role="presentation"><a href="#fin-history" aria-controls="fin" role="tab" data-toggle="tab">Фин.История</a></li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="main">
@@ -79,9 +79,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane active" id="requests">
+        <div role="tabpanel" class="tab-pane active" id="med-history">
+            <h1>В разработке... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h1>
         </div>
-        <div role="tabpanel" class="tab-pane active" id="requests">
+        <div role="tabpanel" class="tab-pane active" id="fin-history">
+            <h1>В разработке... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h1>
         </div>
     </div>
 

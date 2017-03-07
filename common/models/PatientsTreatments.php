@@ -39,7 +39,7 @@ class PatientsTreatments extends \yii\db\ActiveRecord
             [['tooth_id', 'services_id', 'doctor_id'], 'required'],
             [['patient_id', 'tooth_id', 'doctor_id'], 'integer'],
             [['date'], 'string', 'max'=>11],
-            [['services_id'], 'string'],
+//            [['services_id'], 'string'],
         ];
     }
 
@@ -52,7 +52,7 @@ class PatientsTreatments extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'patient_id' => Yii::t('app', 'Patient ID'),
             'date' => Yii::t('app', 'Date'),
-            'tooth_id' => Yii::t('app', 'Tooth ID'),
+            'tooth_id' => Yii::t('app', 'Номер вылеченого зуба'),
             'services_id' => Yii::t('app', 'Services ID'),
             'doctor_id' => Yii::t('app', 'Doctor ID'),
         ];

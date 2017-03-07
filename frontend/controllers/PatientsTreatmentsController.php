@@ -46,6 +46,7 @@ class PatientsTreatmentsController extends Controller
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'patients' => $this->getPatientsVisit(Yii::$app->user->id)
         ]);
     }
 
@@ -72,11 +73,10 @@ class PatientsTreatmentsController extends Controller
         $diagnoses = new PatientsDiagnoses();
         $treatments = new PatientsTreatments();
 
-        if ($diagnoses->load(Yii::$app->request->post()) && $diagnoses->save()) {
+        if ($diagnoses->load(Yii::$app->request->post()) && $diagnoses->save() ) {
 
             $services =json_encode(Yii::$app->request->post('services_id'));
             $treatments->services_id = $services;
-            $treatments->patient_id = $diagnoses->patient_id;
 
             if ($treatments->load(Yii::$app->request->post()) && $treatments->save()) {
 
@@ -87,7 +87,6 @@ class PatientsTreatmentsController extends Controller
                 'diagnoses' => $diagnoses,
                 'treatments' => $treatments,
                 'services' => $this->getServicesList(),
-                'patients' => $this->getPatientsList(Yii::$app->user->id)
             ]);
         }
     }
@@ -117,7 +116,6 @@ class PatientsTreatmentsController extends Controller
                 'diagnoses' => $diagnoses,
                 'treatments' => $treatments,
                 'services' => $this->getServicesList(),
-                'patients' => $this->getPatientsList(Yii::$app->user->id)
             ]);
         }
     }
@@ -184,19 +182,31 @@ class PatientsTreatmentsController extends Controller
      * @param $doctor_id
      * @return mixed
      * Get patients only for the logged-in doctor and
-     * only those who are registered at the current reception
+     * only those who are registered at the current date
      */
-    protected function getPatientsList($doctor_id)
+    protected function getPatientsVisit($doctor_id)
     {
         $timetable = Timetable::find()->where(['doctor_id'=>$doctor_id,'date'=>strtotime(date('d-m-Y',time()))])->all();
-        $timetable_arr = ArrayHelper::map($timetable,'id','patient_id');
+        if(count($timetable)>0) {
 
-        foreach($timetable_arr as $patient_id){
+            $timetable_arr = ArrayHelper::map($timetable, 'id', 'patient_id');
+
+            foreach ($timetable_arr as $patient_id) {
                 $patient = Patients::findOne($patient_id);
-                $patients_array[$patient->id] = $patient->lastname.' '.$patient->firstname.' '.$patient->middlename;
-        }
+                $patients_array[]=[
+                    'id'=>$patient->id,
+                    'name'=> $patient->lastname . ' ' . $patient->firstname . ' ' . $patient->middlename
+                    ];
 
-        return $patients_array;
+            }
+
+            return $patients_array;
+        }else{
+
+            $patients_array = NULL;
+
+            return $patients_array;
+        }
     }
 }
 

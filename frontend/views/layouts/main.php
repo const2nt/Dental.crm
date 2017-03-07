@@ -35,12 +35,12 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Посещение', 'url' => ['/patients-treatments/index']],
-        ['label' => 'Журнал пациентов', 'url' => ['/patient/index']],
         ['label' => 'Журнал приемов', 'url' => ['/timetable/index']],
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Журнал пациентов', 'url' => ['/patient/index']],
+        ['label' => 'Посещение', 'url' => ['/patients-treatments/index']],
+//        ['label' => 'About', 'url' => ['/site/about']],
+//        ['label' => 'Contact', 'url' => ['/site/contact']],
+//        ['label' => 'Home', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

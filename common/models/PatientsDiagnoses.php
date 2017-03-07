@@ -46,8 +46,8 @@ class PatientsDiagnoses extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'patient_id' => Yii::t('app', 'Patient ID'),
             'date' => Yii::t('app', 'Date'),
-            'tooth_id' => Yii::t('app', 'Tooth ID'),
-            'diagnoses_id' => Yii::t('app', 'Diagnoses ID'),
+            'tooth_id' => Yii::t('app', 'Номер диагностированого зуба'),
+            'diagnoses_id' => Yii::t('app', 'Диагноз'),
             'doctor_id' => Yii::t('app', 'Doctor ID'),
         ];
     }

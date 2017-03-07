@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="patients-diagnoses-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2>Осмотр: <?= $_POST['name'] ?></h2>
 
     <?= $this->render('_form', [
         'diagnoses' => $diagnoses,
