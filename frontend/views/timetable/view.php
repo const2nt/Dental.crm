@@ -45,10 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>Yii::t('app','Начало приема'),
                 'value'=>$model->start_time
             ],
-            'end_time' =>[
-                'label'=>Yii::t('app','Конец приема'),
-                'value'=>$model->end_time
-            ],
 //            'patient_id',
             'full_name'=>[
                 'label'=>Yii::t('app','ФИО'),

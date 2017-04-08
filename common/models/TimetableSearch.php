@@ -18,7 +18,7 @@ class TimetableSearch extends Timetable
     public function rules()
     {
         return [
-            [['id', 'date', 'start_time','end_time', 'patient_id', 'doctor_id', 'manager_id', 'primary'], 'integer'],
+            [['id', 'date', 'start_time', 'patient_id', 'doctor_id', 'manager_id', 'primary'], 'integer'],
             [['full_name', 'notes', 'phone'], 'safe'],
         ];
     }
@@ -62,7 +62,6 @@ class TimetableSearch extends Timetable
             'id' => $this->id,
             'date' => $this->date,
             'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
             'patient_id' => $this->patient_id,
             'doctor_id' => $this->doctor_id,
             'manager_id' => $this->manager_id,

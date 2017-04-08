@@ -334,4 +334,9 @@ class TimetableController extends Controller
         }
         return $doctors;
     }
+    static public function setTimetableViewed($timetable_id)
+    {
+
+
+    }
 }

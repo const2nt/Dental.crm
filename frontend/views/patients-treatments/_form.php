@@ -15,6 +15,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($diagnoses, 'patient_id')->hiddenInput(['value' => $_POST['patient_id']])->label(false)?>
 
+    <?= $form->field($diagnoses, 'timetable_id')->hiddenInput(['value' => $_POST['timetable_id']])->label(false)?>
+
     <h3>Диагноз</h3>
 
     <?= $form->field($diagnoses, 'date')->hiddenInput(['value' => strtotime(date('d-m-Y',time()))])->label(false) ?>
@@ -28,6 +30,8 @@ use yii\widgets\ActiveForm;
     <h3>Лечение</h3>
 
     <?= $form->field($treatments, 'patient_id')->hiddenInput(['value' => $_POST['patient_id']])->label(false)?>
+
+    <?= $form->field($treatments, 'timetable_id')->hiddenInput(['value' => $_POST['timetable_id']])->label(false)?>
 
     <?= $form->field($treatments, 'date')->hiddenInput(['value' => strtotime(date('d-m-Y',time()))])->label(false) ?>
 

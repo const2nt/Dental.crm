@@ -42,8 +42,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'start_time')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'end_time')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'doctor_id')->dropDownList($doctors) ?>
 
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>

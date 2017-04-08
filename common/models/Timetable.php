@@ -10,7 +10,6 @@ use Yii;
  *
  * @property integer $id
  * @property integer $start_time
- * @property integer $end_time
  * @property integer $patient_id
  * @property string $full_name
  * @property integer $doctor_id
@@ -56,12 +55,13 @@ class Timetable extends \yii\db\ActiveRecord
     {
         return [
             [['date'], 'string', 'max'=>11],
-            [['start_time','end_time' ], 'string', 'max'=>5 ],
+            [['start_time',], 'string', 'max'=>5 ],
             [['patient_id', 'doctor_id', 'manager_id', 'primary'], 'integer'],
-            [['date','start_time','end_time', 'doctor_id', 'manager_id'], 'required'],
+            [['date','start_time', 'doctor_id', 'manager_id'], 'required'],
             [['notes'], 'string'],
             [['full_name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 25],
+            [['viewed'], 'string','max' => 1]
         ];
     }
 
@@ -74,7 +74,6 @@ class Timetable extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'date' => Yii::t('app', 'Дата'),
             'start_time' => Yii::t('app', 'Начало приема'),
-            'end_time' => Yii::t('app', 'Конец приема'),
             'patient_id' => Yii::t('app', 'ID пациента'),
             'full_name' => Yii::t('app', 'ФИО'),
             'doctor_id' => Yii::t('app', 'Выберите доктора'),

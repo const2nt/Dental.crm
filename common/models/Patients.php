@@ -44,8 +44,8 @@ class Patients extends \yii\db\ActiveRecord
             [['firstname', 'lastname', 'middlename', 'registration_date', 'phone'], 'required'],
             [['patient_card', 'gender'], 'integer'],
             [['registration_date'], 'date', 'format' => 'dd-mm-yyyy' ],
-            [['address', 'place_work', 'notes'], 'string'],
-            [['firstname', 'lastname', 'middlename','country', 'region', 'city'], 'string', 'max' => 50],
+            [['address', 'notes'], 'string'],
+            [['firstname', 'lastname', 'middlename',], 'string', 'max' => 50],
             [['phone'], 'string', 'max' => 25],
         ];
     }
@@ -64,11 +64,7 @@ class Patients extends \yii\db\ActiveRecord
             'registration_date' => Yii::t('app', 'Дата регистрации'),
             'gender' => Yii::t('app', 'Пол'),
             'phone' => Yii::t('app', 'Телефон'),
-            'country' => Yii::t('app', 'Страна'),
-            'region' => Yii::t('app', 'Область'),
-            'city' => Yii::t('app', 'Город'),
             'address' => Yii::t('app', 'Адрес'),
-            'place_work' => Yii::t('app', 'Место работы'),
             'notes' => Yii::t('app', 'Заметки'),
         ];
     }

@@ -47,8 +47,7 @@ foreach ($dates as $date){
                                     if ($patient['doctor_id'] == $doc) {
                                         ?>
                                         <tr>
-                                            <td><?= $patient['start_time'] ?> -
-                                                <?= $patient['end_time'] ?></td>
+                                            <td><?= $patient['start_time'] ?></td>
                                             <td><?php
                                                 foreach($doctor['patients_profile'] as $profile)
                                                 {

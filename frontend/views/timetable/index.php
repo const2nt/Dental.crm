@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
 //            // 'id',
 //            'date',
 //            'start_time',
-//            'end_time',
 //            'patient_id',
 //            'full_name',
 //            'doctor_id',

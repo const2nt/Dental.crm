@@ -186,21 +186,22 @@ class PatientsTreatmentsController extends Controller
      */
     protected function getPatientsVisit($doctor_id)
     {
-        $timetable = Timetable::find()->where(['doctor_id'=>$doctor_id,'date'=>strtotime(date('d-m-Y',time()))])->all();
+        $timetable = Timetable::find()->where(['doctor_id'=>$doctor_id,'date'=>strtotime(date('d-m-Y',time())),'viewed'=>0])->all();
         if(count($timetable)>0) {
 
             $timetable_arr = ArrayHelper::map($timetable, 'id', 'patient_id');
 
-            foreach ($timetable_arr as $patient_id) {
+            foreach ($timetable_arr as $key => $patient_id) {
                 $patient = Patients::findOne($patient_id);
                 $patients_array[]=[
                     'id'=>$patient->id,
-                    'name'=> $patient->lastname . ' ' . $patient->firstname . ' ' . $patient->middlename
-                    ];
+                    'name'=> $patient->lastname . ' ' . $patient->firstname . ' ' . $patient->middlename,
+                    'timetable_id'=> $key
+                ];
 
             }
 
-            return $patients_array;
+             return $patients_array;
         }else{
 
             $patients_array = NULL;

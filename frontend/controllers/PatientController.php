@@ -2,6 +2,9 @@
 
 namespace frontend\controllers;
 
+use common\models\Services;
+use common\models\PatientsDiagnoses;
+use common\models\PatientsTreatments;
 use common\models\PatientProfile;
 use frontend\models\SearchForm;
 use Yii;
@@ -117,9 +120,13 @@ class PatientController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $diagnosesStory = $this->getDiagnosesStory($id);
+        $treatmentsStory = $this->getTreatmentsStory($id);
 
         return $this->render('view', [
-            'model' => $model
+            'model' => $model,
+            'diagnosesStory'=> $diagnosesStory,
+            'treatmentsStory'=> $treatmentsStory
         ]);
     }
 
@@ -188,4 +195,38 @@ class PatientController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    protected function getDiagnosesStory($id)
+    {   
+        $diagnoses = PatientsDiagnoses::find()
+                ->where(['patient_id'=>$id])
+                ->all();
+
+        return $diagnoses;
+    }
+
+    protected function getTreatmentsStory($id)
+    {
+        $treatments = PatientsTreatments::find()
+                ->where(['patient_id'=>$id])
+                ->asArray()
+                ->all();
+        foreach ($treatments as $key) {
+            $services[]= json_decode($key['services_id']);
+            foreach ($services[0] as $ser_id) {
+
+                $serv[] = Services::find()
+                ->where(['id'=>$ser_id])
+                ->asArray()
+                ->one();
+            }
+
+        }
+        foreach ($treatments as $keys) {
+            $keys[] = $serv;
+        }
+
+        return $treatments;
+    }
+
 }

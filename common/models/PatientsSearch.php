@@ -19,7 +19,7 @@ class PatientsSearch extends Patients
     {
         return [
             [['id', 'patient_card', 'registration_date', 'gender'], 'integer'],
-            [['firstname', 'lastname', 'middlename', 'phone', 'country', 'region', 'city', 'address', 'place_work', 'notes'], 'safe'],
+            [['firstname', 'lastname', 'middlename', 'phone', 'address', 'notes'], 'safe'],
         ];
     }
 
@@ -69,11 +69,7 @@ class PatientsSearch extends Patients
             ->andFilterWhere(['like', 'lastname', $this->lastname])
             ->andFilterWhere(['like', 'middlename', $this->middlename])
             ->andFilterWhere(['like', 'phone', $this->phone])
-            ->andFilterWhere(['like', 'country', $this->country])
-            ->andFilterWhere(['like', 'region', $this->region])
-            ->andFilterWhere(['like', 'city', $this->city])
             ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'place_work', $this->place_work])
             ->andFilterWhere(['like', 'notes', $this->notes]);
 
         return $dataProvider;

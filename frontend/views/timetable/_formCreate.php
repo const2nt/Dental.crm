@@ -31,8 +31,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'start_time')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'end_time')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'full_name')
         ->textInput(isset($_POST['name']) ?
             ['maxlength' => true, 'value'=>$_POST['name']] :

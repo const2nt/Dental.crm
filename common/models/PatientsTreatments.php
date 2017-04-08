@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use frontend\controllers\TimetableController;
 use Yii;
 
 /**
@@ -24,8 +25,20 @@ class PatientsTreatments extends \yii\db\ActiveRecord
         return 'patients_treatments';
     }
 
+    /**
+     * @param bool $insert
+     * @return bool
+     */
     public function beforeSave($insert)
-    {
+    {   
+
+        $query = "UPDATE `timetable` SET `viewed`='1' WHERE `id`='".$this->timetable_id."'";
+
+        Yii::$app->db->createCommand($query)
+   ->execute();
+
+        
+
         return parent::beforeSave($insert);
     }
 
@@ -37,7 +50,7 @@ class PatientsTreatments extends \yii\db\ActiveRecord
         return [
 //            [['patient_id', 'date', 'tooth_id', 'services_id', 'doctor_id'], 'required'],
             [['tooth_id', 'services_id', 'doctor_id'], 'required'],
-            [['patient_id', 'tooth_id', 'doctor_id'], 'integer'],
+            [['patient_id', 'tooth_id', 'doctor_id','timetable_id'], 'integer'],
             [['date'], 'string', 'max'=>11],
 //            [['services_id'], 'string'],
         ];
@@ -55,6 +68,7 @@ class PatientsTreatments extends \yii\db\ActiveRecord
             'tooth_id' => Yii::t('app', 'Номер вылеченого зуба'),
             'services_id' => Yii::t('app', 'Services ID'),
             'doctor_id' => Yii::t('app', 'Doctor ID'),
+            'timetable_id' => Yii::t('app', 'Timetable ID'),
         ];
     }
 }

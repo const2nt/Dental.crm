@@ -68,21 +68,23 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => ($model->gender == 0) ? "женский" : "мужской"
                     ],
                     'phone',
-                    'country',
-                    'region',
-                    'city',
                     'address',
-                    'place_work',
                     'notes',
                 ],
             ]) ?>
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane active" id="med-history">
+        <div role="tabpanel" class="tab-pane" id="med-history">
             <h1>В разработке... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h1>
+            <?php
+                echo "<pre>";
+                print_r($diagnosesStory);
+                print_r($treatmentsStory);
+                echo "</pre>";
+            ?>
         </div>
-        <div role="tabpanel" class="tab-pane active" id="fin-history">
+        <div role="tabpanel" class="tab-pane" id="fin-history">
             <h1>В разработке... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h1>
         </div>
     </div>

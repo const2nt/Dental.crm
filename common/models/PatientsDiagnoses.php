@@ -13,6 +13,7 @@ use Yii;
  * @property integer $tooth_id
  * @property string $diagnoses_id
  * @property integer $doctor_id
+ *
  */
 class PatientsDiagnoses extends \yii\db\ActiveRecord
 {
@@ -31,7 +32,7 @@ class PatientsDiagnoses extends \yii\db\ActiveRecord
     {
         return [
             [['patient_id', 'date', 'tooth_id', 'diagnoses_id', 'doctor_id'], 'required'],
-            [['patient_id', 'tooth_id', 'doctor_id'], 'integer'],
+            [['patient_id', 'tooth_id', 'doctor_id', 'timetable_id'], 'integer'],
             [['date'], 'string', 'max'=>11],
             [['diagnoses_id'], 'string'],
         ];
@@ -49,6 +50,8 @@ class PatientsDiagnoses extends \yii\db\ActiveRecord
             'tooth_id' => Yii::t('app', 'Номер диагностированого зуба'),
             'diagnoses_id' => Yii::t('app', 'Диагноз'),
             'doctor_id' => Yii::t('app', 'Doctor ID'),
+            'timetable_id' => Yii::t('app', 'Timetable ID'),
+
         ];
     }
 }

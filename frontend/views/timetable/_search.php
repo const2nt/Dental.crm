@@ -21,8 +21,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'start_time') ?>
 
-<!--    <?//= $form->field($model, 'end_time') ?>-->
-
     <?= $form->field($model, 'patient_id') ?>
 
     <?= $form->field($model, 'full_name') ?>

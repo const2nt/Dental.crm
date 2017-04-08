@@ -24,15 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'phone')->textInput() ?>
 
-    <?= $form->field($model, 'country')->textInput() ?>
-
-    <?= $form->field($model, 'region')->textInput() ?>
-
-    <?= $form->field($model, 'city')->textInput() ?>
-
     <?= $form->field($model, 'address')->textInput() ?>
-
-    <?= $form->field($model, 'place_work')->textInput() ?>
 
     <?= $form->field($model, 'notes')->textarea() ?>
 

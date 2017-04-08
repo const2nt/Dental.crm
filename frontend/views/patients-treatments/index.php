@@ -9,6 +9,11 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Посешения на сегодня');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php
+echo "<pre>";
+print_r($patients);
+echo "</pre>";
+?>
 <div class="patients-diagnoses-index">
 
     <h1><?= Html::encode($this->title) ?>:</h1>
@@ -33,7 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'method' => 'post',
                                     'params' => [
                                         'patient_id' => $patient['id'],
-                                        'name' => $patient['name']
+                                        'name' => $patient['name'],
+                                        'timetable_id'=>$patient['timetable_id']
                                     ],
                                 ],
                             ]
@@ -67,6 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'tooth_id',
                 'diagnoses_id:ntext',
                 'doctor_id',
+                'timetable_id',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],
